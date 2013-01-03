@@ -1,4 +1,4 @@
 __python-scripts-useful__ 
 ***
-my hand-made python scripts.
-TOO USEFUL!!!!!!!!!!!!!!!!!!
+python2,python3混在。依存ライブラリもいっぱい。
+APIキーが要るものがあったり、完全に個人用。
