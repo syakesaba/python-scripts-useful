@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import httplib2
 from time import strftime
 from bs4 import BeautifulSoup as BS
 import re,sys,os
 import base64
 #import sqlite
+
 class Hissi(object):
-	def __init__(self,board="news4vip"):
+
+def __init__(self,board="news4vip"):
                 self.DEBUG=True
 		self.charset="cp932"#shift-jis
 		self.board=board
@@ -18,7 +21,8 @@ class Hissi(object):
         def d(self,s):
                 if self.DEBUG:
                         sys.stderr.write("[*]"+s+os.linesep)
-	def _getHowManyIDs(self):
+
+def _getHowManyIDs(self):
 		h,d=httplib2.Http().request(self.URI,"GET")
 		if h["status"] == "404":
 			raise Exception("日付の変わり目")
