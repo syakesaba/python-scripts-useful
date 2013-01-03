@@ -96,8 +96,12 @@ class GoogleGeoLocationAPI:
 #############
 if __name__ == "__main__":
     my=GoogleGeoLocationAPI()
-    my.addAP(bssid="00:18:84:20:E6:3B",essid="",rssi=-70)
-    my.addAP(bssid="00:18:84:20:E6:39",essid="",rssi=-70)
+    test1="00:18:84:20:E6:3B"
+    test2="00:18:84:20:E6:39"
+    my.addAP(bssid=test1,essid="",rssi=-70)
+    my.addAP(bssid=test2,essid="",rssi=-70)
+    print "TEST1 : " + test1
+    print "TEST2 : " + test2
     ret = my.send()
     if ret["status"] != "OK":
         print "[*]Status is not OK."
