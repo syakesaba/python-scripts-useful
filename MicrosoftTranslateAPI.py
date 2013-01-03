@@ -120,7 +120,7 @@ class MicrosoftBingAPI():
 if __name__ == "__main__":
 	#import completer
 	from time import sleep
-	ms=MicrosoftBingAPI("2F030A04796A594C9CDDFDAFB53A615362E56DC2")
+	ms=MicrosoftBingAPI("API KEYYYYYYYYYYYYYYYYYYYYYYYY")
 	print(ms.SpeakThis("Hello World!"))
 	print(ms.SpeakTranslatedThis("Hello World!"))
 	sleep(1)
