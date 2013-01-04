@@ -7,6 +7,11 @@ from bs4 import BeautifulSoup as BS
 import re,sys,os
 import base64
 #import sqlite
+_aaaaaa="""
+俺よりIDに～～～ｗｗｗｗ
+ってやつを黙らせるためのスクリプト。
+同時にhissi.orgに多大な負荷をかける。
+"""
 
 class Hissi(object):
 
