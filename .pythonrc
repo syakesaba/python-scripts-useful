@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+try:
+    import rlcompleter,atexit,os
+    pyhistfile=os.getenv("HOME")+"/.pyhistory"
+    rlcompleter.readline.parse_and_bind("tab: complete")
+    rlcompleter.readline.read_history_file(pyhistfile)
+    rlcompleter.readline.set_history_length(100)
+    atexit.register(rlcompleter.readline.write_history_file, pyhistfile)
+    del rlcompleter,atexit,os,pyhistfile
+except:
+    pass
