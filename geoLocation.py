@@ -111,7 +111,7 @@ class GoogleGeoLocationAPI:
 
         -> int
         """
-        return int((rssi*1.0/maxrssi*1.0)*100)
+        return int((rssi*1.0/maxrssi*1.0+0.00000001)*100)
 
     def w2dbm(self,mW):
         """
