@@ -16,6 +16,8 @@ class GoogleGeoLocationAPI:
     See: http://milo2012.wordpress.com/tag/wifi-location/
     Googleは所持するDBから、無線LANアクセスポイントのBSSIDとRSSIにより
     位置情報を測量します。APは２つだけ(!?)でも大丈夫らしいです。
+
+    一切エラー処理をしていません。
     """
 
     def __init__(self, apiURL=API, browser="firefox", sensor="true"):
@@ -33,17 +35,25 @@ class GoogleGeoLocationAPI:
         self.ACCURACY_BADTOWER=[166000.0,122000.0]
 
     def addAP(self, bssid, essid="", rssi=80):
+        """
+        bssid: BSSID
+        essid: ESSID (optional)
+        rssi: RSSI (semi-must){Specifying real RSSI value will increase the certainty}
+        """
         self._isValidBSSID(bssid)
         self.towers.append({"mac":str(bssid),"ssid":str(essid),"ss":str(rssi)})
 
     def removeAP(self,bssid):
+        """
+        bssid: BSSID
+        """
         for ap in self.towers:
             if ap["mac"] == bssid:
                 self.towers.remove(ap)
 
     def send(self):
         """
-        エラー処理　無視
+        -> json
         """
         req=self.apiURL + \
         self._parameterize() + \
@@ -54,16 +64,27 @@ class GoogleGeoLocationAPI:
         return ret
 
     def _isValidBSSID(self,bssid):
+        """
+        bssid: BSSID
+        """
         if self._re_bssid.match(bssid) == None:
+            #raise Exception("Invalid BSSID %s." % bssid)
             return False
         return True
 
     def _isValidAccuracy(self,accuracy):
+        """
+        Check Google sent pre-defined value of BAD_ACCURACY or didnt
+        accuracy: The received, from Google's geolocationAPI
+        """
         if accuracy in self.ACCURACY_BADTOWER:
             return False
         return True
 
     def _isEnoughAPs(self):
+        """
+        the Google reject people identify someone with ease
+        """
         if len(self.towers) < 2:
             return False
         return True
@@ -84,12 +105,26 @@ class GoogleGeoLocationAPI:
         return "&".join(parameterized)
 
     def rssi2percentage(self,rssi,maxrssi):
+        """
+        rssi=RSSI
+        maxrssi=the Highest RSSI value seen in a while
+
+        -> int
+        """
         return int((rssi*1.0/maxrssi*1.0)*100)
 
-    def w2dbm(self,w):
-        return math.log10(w/0.001)
+    def w2dbm(self,mW):
+        """
+        mW: Milli Watt, 1W = 1000mW.
+
+        -> dBm
+        """
+        return 10.0*log10(w)
 
     def percentage2dbm(self,p):
+        """
+        Vendor?IEEE802.11?
+        """
         #return fromVendorDB(p)
         pass
 
@@ -107,12 +142,12 @@ if __name__ == "__main__":
         print "[*]Status is not OK."
         print ret
     accuracy=ret["accuracy"]
+    if accuracy in my.ACCURACY_BADTOWER:
+        print "[*] BAD TOWER! Google will provide the location using your IP!"
+        print ret
+    print "[*] Accuracy: %s" % accuracy
     lat=str(ret["location"]["lat"])
     lng=str(ret["location"]["lng"])
-    if accuracy in my.ACCURACY_BADTOWER:
-        print "[*] BAD TOWER! Google will provide location using your IP!"
-        print ret
-    print "[*]Accuracy: %s" % accuracy
     print "[*] See also:"
     t="http://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&sensor=true"\
     % (lat,lng)
@@ -120,4 +155,5 @@ if __name__ == "__main__":
     print "https://maps.google.com/maps?q=%s,%s&iwloc=A&hl=ja" \
     % (lat,lng)
     rret=my._decoder.decode(urllib2.urlopen(t).read())
+    print "____result____"
     print rret["results"][0]["formatted_address"]
