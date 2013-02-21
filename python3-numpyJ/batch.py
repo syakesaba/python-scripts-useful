@@ -1,5 +1,5 @@
 #cl=class
-#fi=filemei
+#fi=filename
 class dummy:
 	def __init__(self,cl,fi):
 		p=open(fi,"w")
