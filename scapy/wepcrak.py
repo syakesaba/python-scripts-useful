@@ -106,8 +106,8 @@ It holds VulnESSID,functions for crack them.
 		  self.d("NOT a DATA Packet")
 		  return -1
 	    for i in range(100000):
-		  if self.isValidKey('%0d' % i,pkt):
-			self.d('Got a key! => %0d ' % i)
+		  if self.isValidKey('%05d' % i,pkt):
+			self.d('Got a key! => %05d ' % i)
 		  else:
 			self.d('i=%d' % i)
 
