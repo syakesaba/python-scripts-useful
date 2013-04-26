@@ -20,6 +20,7 @@ try:
 except ImportError as e:
     print(e)
     print("See:",_Install_Numpy_URI[0])
+    exit(-1)
 Numpy用日本語={
 "ALLOW_THREADS":"スレッド対応しているか",
 "BUFSIZE":"バッファサイズ",
@@ -572,7 +573,7 @@ Numpy用日本語={
 "zeros":"",
 "zeros_like":""
 }
-Numpy_matrix用日本語={
+matrix用日本語={
 "A":"",
 "A1":"",
 "H":"",
@@ -652,12 +653,13 @@ Numpy_matrix用日本語={
 "var":"",
 "view":""
 }
+
 for key in Numpy用日本語:
     if Numpy用日本語[key]:
-        exec("numpy.%s = numpy.%s" % (Numpy用日本語[key],key) )
-for key in Numpy_matrix用日本語:
-    if Numpy_matrix用日本語[key]:
-        exec("numpy.matrix.%s = numpy.matrix.%s" % (Numpy_matrix用日本語[key],key) )
+        setattr(numpy,Numpy用日本語[key],key)
+for key in matrix用日本語:
+    if matrix用日本語[key]:
+        setattr(numpy.matrix,Numpy用日本語[key],key)
 
 if __name__ == "__main__":
     pass
