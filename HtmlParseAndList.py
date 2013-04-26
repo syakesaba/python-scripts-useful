@@ -8,7 +8,7 @@ import nkf # NKF wrapper for python3. See; http://sourceforge.jp/projects/nkf/sc
 try: #  BeautifulSoup,The best HTML parser python,is available to python3 after 2to3.
     from bs4 import BeautifulSoup as BSoup
 except:
-    import BeautifulSoup as BSoup
+    from BeautifulSoup import BeautifulSoup as BSoup
 import urllib.request
 from sys import argv
 
