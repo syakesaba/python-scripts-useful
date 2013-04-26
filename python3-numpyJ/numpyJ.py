@@ -16,10 +16,10 @@ _How2_Numpy_URI=[
 ,"http://www.logos.ic.i.u-tokyo.ac.jp/~s1s5/pukiwiki/index.php?programming%2Fpython%2Fscipy"
 ]
 try:
-	import numpy
+    import numpy
 except ImportError as e:
-	print(e)
-	print("See:",_Install_Numpy_URI[0])
+    print(e)
+    print("See:",_Install_Numpy_URI[0])
 Numpy用日本語={
 "ALLOW_THREADS":"スレッド対応しているか",
 "BUFSIZE":"バッファサイズ",
@@ -653,11 +653,11 @@ Numpy_matrix用日本語={
 "view":""
 }
 for key in Numpy用日本語:
-	if Numpy用日本語[key]:
-		exec("numpy.%s = numpy.%s" % (Numpy用日本語[key],key) )
+    if Numpy用日本語[key]:
+        exec("numpy.%s = numpy.%s" % (Numpy用日本語[key],key) )
 for key in Numpy_matrix用日本語:
-	if Numpy_matrix用日本語[key]:
-		exec("numpy.matrix.%s = numpy.matrix.%s" % (Numpy_matrix用日本語[key],key) )
+    if Numpy_matrix用日本語[key]:
+        exec("numpy.matrix.%s = numpy.matrix.%s" % (Numpy_matrix用日本語[key],key) )
 
 if __name__ == "__main__":
-	pass
+    pass
