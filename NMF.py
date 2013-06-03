@@ -1,3 +1,6 @@
+#!/usr/env/bin python3
+# encoding: utf-8
+
 import numpy
 
 try:
