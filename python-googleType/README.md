@@ -7,7 +7,7 @@ GoogleType
 
 使い方
 ========
-$ python GoogleType.py unko  
+$ python googleType/__init__.py unko  
 [*]Wait A while...  
 http://www.google-type.com/cache/cb545c685816a32403a078792b4f6634354d0efe_.gif  
 http://www.google-type.com/cache/6e5352dd0f11c5f18fd0f1e562ae50cc6820d0f5_.gif  
