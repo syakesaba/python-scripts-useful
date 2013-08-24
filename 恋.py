@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-いない=ない=None # python3スクリプトです。
+夢=理想=None # python3スクリプトです。 python3 で実行してください。
 
 成功=True
 失敗=False
@@ -20,8 +20,12 @@ class どうしようもないわエラー(例外):
         return "これどうしようもないわ"
 
 class 人間:
-    def __init__(自分,遺伝子):
-        自分.魅力=遺伝子
+    def __init__(自分,外見,心=None):
+        自分.外見的魅力=外見
+        del 心
+    @property
+    def 魅力(自分):
+        return 自分.外見的魅力
     def 出会い(自分,相手):
         if 自分.魅力 > 無:
             return 成功
@@ -35,20 +39,36 @@ class 人間:
             return 成功
         return 失敗
 
-俺=人間(12)
-def 人生における女との出会い():
-    yield 人間(15)
-    yield 人間(120)
-    yield 人間(13)
-    yield 人間(12.1)
+class 男(人間):
+    def __init__(自分,遺伝子):
+        人間.__init__(自分,遺伝子)
+        pass
 
-for 女 in 人生における女との出会い():
-    if 俺.出会い(女) == 成功:
-        if 俺.恋愛(女) == 成功:
-            if 俺.結婚(女) == 成功:
-                print("成功。女.魅力 = " + str(女.魅力))
-                exit()
+class 女(人間):
+    def __init__(自分,遺伝子):
+        人間.__init__(自分,遺伝子)
+        pass
+
+俺=男(12)
+
+def 人生における人との出会い():
+    yield 女(15)
+    yield 男(120)
+    yield 女(12.1)
+    yield 女(12)
+    yield 女(100)
+    yield 男(120)
+    yield 女(110)
+    #yield 女(0.1)
+
+for 人 in 人生における人との出会い():
+    if isinstance(人,男):
+        continue
+    女性=人
+    if 俺.出会い(女性) == 成功:
+        if 俺.恋愛(女性) == 成功:
+            if 俺.結婚(女性) == 成功:
+                print("カップリング成功。相手の女性の魅力 = " + str(女性.魅力))
+                exit(-1)
 
 raise どうしようもないわエラー()
-
-
