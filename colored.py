@@ -21,9 +21,9 @@ def bwhite(s):
 
 #BRIGHT
 def lblack(s):
-    return "\x1B[0m\x1B[30m;" + s + "\x1B[0m"
-def lred(s):
     return "\x1B[0m\x1B[30m" + s + "\x1B[0m"
+def lred(s):
+    return "\x1B[0m\x1B[31m" + s + "\x1B[0m"
 def lgreen(s):
     return "\x1B[0m\x1B[32m" + s + "\x1B[0m"
 def lyellow(s):
@@ -39,9 +39,9 @@ def lwhite(s):
 
 #NORMAL
 def black(s):
-    return "\x1B[2m\x1B[30m;" + s + "\x1B[0m"
+    return "\x1B[2m\x1B[30m" + s + "\x1B[0m"
 def red(s):
-    return "\x1B[2m\x1B[32m" + s + "\x1B[0m"
+    return "\x1B[2m\x1B[31m" + s + "\x1B[0m"
 def green(s):
     return "\x1B[2m\x1B[32m" + s + "\x1B[0m"
 def yellow(s):
@@ -55,40 +55,75 @@ def cyan(s):
 def white(s):
     return "\x1B[2m\x1B[37m" + s + "\x1B[0m"
 
-colors = ["black","green","yellow","blue","magenta","cyan","white"]
+#BGBOLD
+def bgbblack(s):
+    return "\x1B[1m\x1B[40m" + s + "\x1B[0m"
+def bgbred(s):
+    return "\x1B[1m\x1B[41m" + s + "\x1B[0m"
+def bgbgreen(s):
+    return "\x1B[1m\x1B[42m" + s + "\x1B[0m"
+def bgbyellow(s):
+    return "\x1B[1m\x1B[43m" + s + "\x1B[0m"
+def bgbblue(s):
+    return "\x1B[1m\x1B[44m" + s + "\x1B[0m"
+def bgbmagenta(s):
+    return "\x1B[1m\x1B[45m" + s + "\x1B[0m"
+def bgbcyan(s):
+    return "\x1B[1m\x1B[46m" + s + "\x1B[0m"
+def bgbwhite(s):
+    return "\x1B[1m\x1B[47m" + s + "\x1B[0m"
+
+#BGBRIGHT
+def bglblack(s):
+    return "\x1B[0m\x1B[40m" + s + "\x1B[0m"
+def bglred(s):
+    return "\x1B[0m\x1B[41m" + s + "\x1B[0m"
+def bglgreen(s):
+    return "\x1B[0m\x1B[42m" + s + "\x1B[0m"
+def bglyellow(s):
+    return "\x1B[0m\x1B[43m" + s + "\x1B[0m"
+def bglblue(s):
+    return "\x1B[0m\x1B[44m" + s + "\x1B[0m"
+def bglmagenta(s):
+    return "\x1B[0m\x1B[45m" + s + "\x1B[0m"
+def bglcyan(s):
+    return "\x1B[0m\x1B[46m" + s + "\x1B[0m"
+def bglwhite(s):
+    return "\x1B[0m\x1B[47m" + s + "\x1B[0m"
+
+#BGNORMAL
+def bgblack(s):
+    return "\x1B[2m\x1B[40m" + s + "\x1B[0m"
+def bgred(s):
+    return "\x1B[2m\x1B[41m" + s + "\x1B[0m"
+def bggreen(s):
+    return "\x1B[2m\x1B[42m" + s + "\x1B[0m"
+def bgyellow(s):
+    return "\x1B[2m\x1B[43m" + s + "\x1B[0m"
+def bgblue(s):
+    return "\x1B[2m\x1B[44m" + s + "\x1B[0m"
+def bgmagenta(s):
+    return "\x1B[2m\x1B[45m" + s + "\x1B[0m"
+def bgcyan(s):
+    return "\x1B[2m\x1B[46m" + s + "\x1B[0m"
+def bgwhite(s):
+    return "\x1B[2m\x1B[47m" + s + "\x1B[0m"
+
+colors = ["black", "red","green","yellow","blue","magenta","cyan","white"]
 lcolors = ["l" + color for color in colors]
 bcolors = ["b" + color for color in colors]
 
+bgcolors = ["bg" + color for color in colors]
+bglcolors = ["bgl" + color for color in colors]
+bgbcolors = ["bgb" + color for color in colors]
+
 colors += lcolors
 colors += bcolors
+colors += bgcolors
+colors += bglcolors
+colors += bgbcolors
 
 if __name__ == "__main__":
     import sys
-    sys.stdout.write(black("black"))
-    sys.stdout.write(green("green"))
-    sys.stdout.write(yellow("yellow"))
-    sys.stdout.write(blue("blue"))
-    sys.stdout.write(magenta("magenta"))
-    sys.stdout.write(cyan("cyan"))
-    sys.stdout.write(white("white"))
-
-    sys.stdout.write(lblack("lblack"))
-    sys.stdout.write(lgreen("lgreen"))
-    sys.stdout.write(lyellow("lyellow"))
-    sys.stdout.write(lblue("lblue"))
-    sys.stdout.write(lmagenta("lmagenta"))
-    sys.stdout.write(lcyan("lcyan"))
-    sys.stdout.write(lwhite("lwhite"))
-
-    sys.stdout.write(bblack("bblack"))
-    sys.stdout.write(bgreen("bgreen"))
-    sys.stdout.write(byellow("byellow"))
-    sys.stdout.write(bblue("bblue"))
-    sys.stdout.write(bmagenta("bmagenta"))
-    sys.stdout.write(bcyan("bcyan"))
-    sys.stdout.write(bwhite("bwhite"))
-
-    def test(s):
-        return "\x1B[6m\x1B[34m" + s + "\x1B[0m"
-    sys.stdout.write(test("test"))
-    sys.stdout.write("\r\n")
+    for color in colors:
+        eval("sys.stdout.write(%s('%s') + '\\r\\n')" % (color,color) )
