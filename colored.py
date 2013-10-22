@@ -55,75 +55,40 @@ def cyan(s):
 def white(s):
     return "\x1B[2m\x1B[37m" + s + "\x1B[0m"
 
-#BGBOLD
-def bgbblack(s):
-    return "\x1B[1m\x1B[40m" + s + "\x1B[0m"
-def bgbred(s):
-    return "\x1B[1m\x1B[41m" + s + "\x1B[0m"
-def bgbgreen(s):
-    return "\x1B[1m\x1B[42m" + s + "\x1B[0m"
-def bgbyellow(s):
-    return "\x1B[1m\x1B[43m" + s + "\x1B[0m"
-def bgbblue(s):
-    return "\x1B[1m\x1B[44m" + s + "\x1B[0m"
-def bgbmagenta(s):
-    return "\x1B[1m\x1B[45m" + s + "\x1B[0m"
-def bgbcyan(s):
-    return "\x1B[1m\x1B[46m" + s + "\x1B[0m"
-def bgbwhite(s):
-    return "\x1B[1m\x1B[47m" + s + "\x1B[0m"
-
-#BGBRIGHT
-def bglblack(s):
-    return "\x1B[0m\x1B[40m" + s + "\x1B[0m"
-def bglred(s):
-    return "\x1B[0m\x1B[41m" + s + "\x1B[0m"
-def bglgreen(s):
-    return "\x1B[0m\x1B[42m" + s + "\x1B[0m"
-def bglyellow(s):
-    return "\x1B[0m\x1B[43m" + s + "\x1B[0m"
-def bglblue(s):
-    return "\x1B[0m\x1B[44m" + s + "\x1B[0m"
-def bglmagenta(s):
-    return "\x1B[0m\x1B[45m" + s + "\x1B[0m"
-def bglcyan(s):
-    return "\x1B[0m\x1B[46m" + s + "\x1B[0m"
-def bglwhite(s):
-    return "\x1B[0m\x1B[47m" + s + "\x1B[0m"
-
-#BGNORMAL
+#Background
 def bgblack(s):
-    return "\x1B[2m\x1B[40m" + s + "\x1B[0m"
+    return "\x1B[40m" + s + "\x1B[0m"
 def bgred(s):
-    return "\x1B[2m\x1B[41m" + s + "\x1B[0m"
+    return "\x1B[41m" + s + "\x1B[0m"
 def bggreen(s):
-    return "\x1B[2m\x1B[42m" + s + "\x1B[0m"
+    return "\x1B[42m" + s + "\x1B[0m"
 def bgyellow(s):
-    return "\x1B[2m\x1B[43m" + s + "\x1B[0m"
+    return "\x1B[43m" + s + "\x1B[0m"
 def bgblue(s):
-    return "\x1B[2m\x1B[44m" + s + "\x1B[0m"
+    return "\x1B[44m" + s + "\x1B[0m"
 def bgmagenta(s):
-    return "\x1B[2m\x1B[45m" + s + "\x1B[0m"
+    return "\x1B[45m" + s + "\x1B[0m"
 def bgcyan(s):
-    return "\x1B[2m\x1B[46m" + s + "\x1B[0m"
+    return "\x1B[46m" + s + "\x1B[0m"
 def bgwhite(s):
-    return "\x1B[2m\x1B[47m" + s + "\x1B[0m"
+    return "\x1B[47m" + s + "\x1B[0m"
+
+#underline
+def underline(s):
+    return "\x1B[47m" + s + "\x1B[0m"
+def ansi_stop_sequence(s=""):
+    return s + "\x1B[0m"
 
 colors = ["black", "red","green","yellow","blue","magenta","cyan","white"]
 lcolors = ["l" + color for color in colors]
 bcolors = ["b" + color for color in colors]
-
 bgcolors = ["bg" + color for color in colors]
-bglcolors = ["bgl" + color for color in colors]
-bgbcolors = ["bgb" + color for color in colors]
 
 colors += lcolors
 colors += bcolors
 colors += bgcolors
-colors += bglcolors
-colors += bgbcolors
 
 if __name__ == "__main__":
     import sys
     for color in colors:
-        eval("sys.stdout.write(%s('%s') + '\\r\\n')" % (color,color) )
+        eval("sys.stdout.write(%s('%s') + '  ' + '\\r\\n')" % (color,color) )
